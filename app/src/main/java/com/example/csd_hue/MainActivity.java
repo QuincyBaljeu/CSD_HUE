@@ -14,9 +14,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button button_Connect = findViewById(R.id.btn_connect);
+        Button btn_connect = findViewById(R.id.btn_connect);
 
-        button_Connect.setOnClickListener(new View.OnClickListener() {
+        btn_connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HueController.class));
