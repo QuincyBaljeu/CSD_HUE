@@ -2,4 +2,8 @@
     <string name="app_name">CSD_HUE</string>
     <string name="login_port">Port</string>
     <string name="login_ip">IP-address</string>
+    <string name="cont_brightness">Brightness</string>
+    <string name="cont_saturation">Saturation</string>
+    <string name="cont_hue">Hue</string>
+    <string name="cont_sendtobridge">Send to bridge</string>
 </resources>
