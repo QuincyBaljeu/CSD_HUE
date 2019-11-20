@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CSD_HUE</string>
+    <string name="login_port">Port</string>
+    <string name="login_ip">IP-address</string>
 </resources>
