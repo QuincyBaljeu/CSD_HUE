@@ -13,7 +13,7 @@ public class HueController extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hue_controller);
-        
+
         Button btn_sendToBridge = findViewById(R.id.btn_sendToBridge);
 
         btn_sendToBridge.setOnClickListener(new View.OnClickListener(){

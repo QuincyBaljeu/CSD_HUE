@@ -6,4 +6,5 @@
     <string name="cont_saturation">Saturation</string>
     <string name="cont_hue">Hue</string>
     <string name="cont_sendtobridge">Send to bridge</string>
+    <string name="login_userkey">User key</string>
 </resources>
