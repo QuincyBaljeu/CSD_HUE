@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CSD_HUE</string>
+    <string name="login_port">Port</string>
+    <string name="login_ip">IP-adres</string>
+    <string name="cont_sendtobridge">Stuur naar bridge</string>
+    <string name="cont_saturation">Verzadiging</string>
+    <string name="cont_hue">Tint</string>
+    <string name="cont_brightness">Helderheid</string>
+</resources>

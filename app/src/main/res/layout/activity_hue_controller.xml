@@ -10,46 +10,43 @@
         android:id="@+id/btn_sendToBridge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/cont_sendtobridge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bar_saturation"
-        app:layout_constraintVertical_bias="0.098"
-        tools:text="@string/cont_sendtobridge" />
+        app:layout_constraintVertical_bias="0.098" />
 
     <TextView
         android:id="@+id/txt_saturation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/cont_saturation"
         app:layout_constraintBottom_toTopOf="@+id/bar_saturation"
         app:layout_constraintEnd_toEndOf="@+id/bar_saturation"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/bar_saturation"
-        tools:text="@string/cont_saturation" />
+        app:layout_constraintStart_toStartOf="@+id/bar_saturation" />
 
     <TextView
         android:id="@+id/txt_brightness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/cont_brightness"
         app:layout_constraintBottom_toTopOf="@+id/bar_brightness"
         app:layout_constraintEnd_toEndOf="@+id/bar_brightness"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/bar_brightness"
-        tools:text="@string/cont_brightness" />
+        app:layout_constraintStart_toStartOf="@+id/bar_brightness" />
 
     <TextView
         android:id="@+id/txt_hue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/cont_hue"
         app:layout_constraintBottom_toTopOf="@+id/bar_hue"
         app:layout_constraintEnd_toEndOf="@+id/bar_hue"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/bar_hue"
-        tools:text="@string/cont_hue" />
+        app:layout_constraintStart_toStartOf="@+id/bar_hue" />
 
     <SeekBar
         android:id="@+id/bar_hue"
