@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class CustomJsonObjectRequest extends JsonRequest<JSONObject> {
+public class CustomJsonObjectRequest extends JsonRequest<JSONArray> {
 
     public CustomJsonObjectRequest(int method, String url, @Nullable JSONObject requestBody,
                                    Response.Listener<JSONArray> listener,
@@ -27,7 +27,7 @@ public class CustomJsonObjectRequest extends JsonRequest<JSONObject> {
     }
 
     @Override
-    protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+    protected Response<JSONArray> parseNetworkResponse(NetworkResponse response) {
         Response parsingResult;
         try {
             String responseInText = new String(response.data,
@@ -35,7 +35,7 @@ public class CustomJsonObjectRequest extends JsonRequest<JSONObject> {
             JSONObject returnArray = new JSONObject(responseInText);
             parsingResult = Response.success(returnArray, HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException | JSONException e) {
-            parsingResult = Response.error(new VolleyError("Returned info is not a JsonObject"));
+            parsingResult = Response.error(new VolleyError("Returned info is not a JsonArray"));
         }
         return parsingResult;
     }
