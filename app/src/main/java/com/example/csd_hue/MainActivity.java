@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("port",port);
                 
                 startActivity(intent);
+                startActivity(new Intent(MainActivity.this, Lamp_list.class));
             }
         });
     }
