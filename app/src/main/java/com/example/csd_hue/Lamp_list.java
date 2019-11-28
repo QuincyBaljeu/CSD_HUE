@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -50,9 +51,14 @@ public class Lamp_list extends AppCompatActivity {
             public void lampFound(JSONObject lamp) {
                 lamps.add(lamp);
                 lampAdapter.notifyDataSetChanged();
+                Log.d("d@",lamp.toString());
             }
         });
+
         jsonHandling.setUp();
-        jsonHandling.getLampList();
+        while (!jsonHandling.isSetUp()) jsonHandling.getLampList();
+
+        Log.d("@d", "getting list...");
     }
+
 }

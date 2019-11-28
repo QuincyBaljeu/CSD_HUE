@@ -24,6 +24,7 @@ public class JsonHandling {
     private String URL;
     private String username;
     private LampFound lampFound;
+    private boolean setUp = false;
 
     public JsonHandling(Context c, String host, String port, LampFound lampFound) {
         this.URL = "http://" + host + ":" + port + "/api";
@@ -46,11 +47,13 @@ public class JsonHandling {
             public void onResponse(JSONArray response) {
                 try {
                     String rs = response.getJSONObject(0)
-                            .getJSONObject("succes")
+                            .getJSONObject("success")
                             .getString("username");
+                    Log.d("@d",rs);
                     username = rs;
+                    setUp = true;
                 } catch (Exception e) {
-                    Log.d("@d", "dont forget to press link!");
+                    Log.d("@d", "dont forget to press link!",e);
                 }
             }
         }, new Response.ErrorListener() {
@@ -63,29 +66,31 @@ public class JsonHandling {
     }
 
     public void getLampList() {
-        String putUrl = URL + "/" + username;
-        ArrayList<String> listdata = new ArrayList<String>();
-        JsonObjectRequest rq = new JsonObjectRequest(Request.Method.GET, putUrl, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                JSONArray ids = response.names();
-                if (ids != null) {
-                    for (int i = 0; i < ids.length(); i++) {
-                        try {
-                            lampFound.lampFound(ids.getJSONObject(i));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+        if (setUp) {
+            String putUrl = URL + "/" + username;
+            JsonObjectRequest rq = new JsonObjectRequest(Request.Method.GET, putUrl, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    JSONArray array = null;
+                    try {
+                        array = response.getJSONObject("lights").names();
+                        Log.d("@d", array.toString());
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject lamp = array.getJSONObject(i);
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("@E", error.toString());
-            }
-        });
-        requestQueue.add(rq);
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Log.e("@E", error.toString());
+                }
+            });
+            requestQueue.add(rq);
+        }else Log.e("@e", "setup was not completed");
     }
 
     public void setLampColor(int id, int bri, int hueVal, int sat, boolean state) throws JSONException {
@@ -105,5 +110,7 @@ public class JsonHandling {
         requestQueue.add(jsonObjectRequest);
     }
 
-
+    public boolean isSetUp() {
+        return setUp;
+    }
 }

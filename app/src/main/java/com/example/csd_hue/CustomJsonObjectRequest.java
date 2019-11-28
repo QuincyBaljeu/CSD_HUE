@@ -1,5 +1,7 @@
 package com.example.csd_hue;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.android.volley.NetworkResponse;
@@ -32,7 +34,8 @@ public class CustomJsonObjectRequest extends JsonRequest<JSONArray> {
         try {
             String responseInText = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-            JSONObject returnArray = new JSONObject(responseInText);
+            Log.d("@d",responseInText);
+            JSONArray returnArray = new JSONArray(responseInText);
             parsingResult = Response.success(returnArray, HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException | JSONException e) {
             parsingResult = Response.error(new VolleyError("Returned info is not a JsonArray"));
