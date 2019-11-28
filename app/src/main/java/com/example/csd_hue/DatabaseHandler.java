@@ -16,7 +16,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        /**
+        String Create_Lamp_Table = "CREATE TABLE " + Constants.TABLE_NAME
+                + " (" + Constants.KEY_ID + " INTEGER PRIMARY KEY, "
+                + Constants.KEY_HUE + " TEXT, "
+                +
+         */
     }
 
     @Override

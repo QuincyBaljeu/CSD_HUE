@@ -18,6 +18,7 @@ public class Lamp_list extends AppCompatActivity {
     private ArrayAdapter lampAdapter;
     private String[] lamps = { "1", "2", "3"};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

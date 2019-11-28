@@ -11,4 +11,7 @@ public class Constants {
     public static final String KEY_USERKEY = "user_key";
     public static final String KEY__IPADDRESS = "ip_address";
     public static final String KEY_PORT = "port";
+    public static final String KEY_SATURATION = "Saturation";
+    public static final String KEY_BRIGHTNESS = "Brightness";
+    public static final String KEY_HUE = "Hue";
 }
