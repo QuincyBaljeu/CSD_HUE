@@ -8,4 +8,5 @@
     <string name="cont_hue">Tint</string>
     <string name="cont_brightness">Helderheid</string>
     <string name="login_userkey">Gebruiker sleutel</string>
+    <string name="const_sendtodb">Stuur naar database</string>
 </resources>

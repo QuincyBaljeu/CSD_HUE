@@ -7,4 +7,5 @@
     <string name="cont_hue">Hue</string>
     <string name="cont_sendtobridge">Send to bridge</string>
     <string name="login_userkey">User key</string>
+    <string name="const_sendtodb">Send to database</string>
 </resources>
