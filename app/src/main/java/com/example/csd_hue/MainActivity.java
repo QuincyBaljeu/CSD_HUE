@@ -30,12 +30,11 @@ public class MainActivity extends AppCompatActivity {
                 String port = et_port.getText().toString();
                 String userkey;
 
-                Intent intent = new Intent(MainActivity.this, HueController.class);
+                Intent intent = new Intent(MainActivity.this, Lamp_list.class);
                 intent.putExtra("ip",ip);
                 intent.putExtra("port",port);
                 
                 startActivity(intent);
-                startActivity(new Intent(MainActivity.this, Lamp_list.class));
             }
         });
     }

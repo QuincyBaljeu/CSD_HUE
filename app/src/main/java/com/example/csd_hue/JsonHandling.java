@@ -23,10 +23,12 @@ public class JsonHandling {
     private Context c;
     private String URL;
     private String username;
+    private LampFound lampFound;
 
-    public JsonHandling(Context c, String host, int port) {
+    public JsonHandling(Context c, String host, String port, LampFound lampFound) {
         this.URL = "http://" + host + ":" + port + "/api";
         this.c = c;
+        this.lampFound = lampFound;
     }
 
     public void setUp() {
@@ -60,7 +62,7 @@ public class JsonHandling {
         requestQueue.add(request);
     }
 
-    public List<String> getLampList() {
+    public void getLampList() {
         String putUrl = URL + "/" + username;
         ArrayList<String> listdata = new ArrayList<String>();
         JsonObjectRequest rq = new JsonObjectRequest(Request.Method.GET, putUrl, null, new Response.Listener<JSONObject>() {
@@ -70,7 +72,7 @@ public class JsonHandling {
                 if (ids != null) {
                     for (int i = 0; i < ids.length(); i++) {
                         try {
-                            listdata.add(ids.getString(i));
+                            lampFound.lampFound(ids.getJSONObject(i));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -84,7 +86,6 @@ public class JsonHandling {
             }
         });
         requestQueue.add(rq);
-        return listdata;
     }
 
     public void setLampColor(int id, int bri, int hueVal, int sat, boolean state) throws JSONException {
