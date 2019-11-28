@@ -1,4 +1,4 @@
-package com.example.csd_hue;
+package com.example.csd_hue.Database;
 
 public class Lamp {
 

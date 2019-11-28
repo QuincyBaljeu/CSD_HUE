@@ -19,13 +19,13 @@
         app:srcCompat="@drawable/hue_logo" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/txt_userkey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
+        android:hint="@string/login_userkey"
         android:inputType="textPersonName"
-        android:text="@string/login_userkey"
         app:layout_constraintEnd_toEndOf="@+id/txt_ip"
         app:layout_constraintStart_toStartOf="@+id/txt_ip"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -35,19 +35,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/login_ip"
         android:inputType="textPersonName"
-        android:text="@string/login_ip"
         app:layout_constraintEnd_toEndOf="@+id/txt_port"
         app:layout_constraintStart_toStartOf="@+id/txt_port"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_userkey" />
 
     <EditText
         android:id="@+id/txt_port"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/login_port"
         android:inputType="textPersonName"
-        android:text="@string/login_port"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText et_ip;
     private EditText et_port;
+    private EditText et_userKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         et_ip = findViewById(R.id.txt_ip);
         et_port = findViewById(R.id.txt_port);
+        et_userKey = findViewById(R.id.txt_userkey);
+
 
         Button btn_connect = findViewById(R.id.btn_connect);
 
