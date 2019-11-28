@@ -14,4 +14,5 @@ public class Constants {
     public static final String KEY_SATURATION = "Saturation";
     public static final String KEY_BRIGHTNESS = "Brightness";
     public static final String KEY_HUE = "Hue";
+    public static final String KEY_LAMPID = "Lamp_id";
 }
