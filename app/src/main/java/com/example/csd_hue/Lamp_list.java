@@ -24,6 +24,7 @@ public class Lamp_list extends AppCompatActivity {
     private String port;
     private JsonHandling jsonHandling;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
