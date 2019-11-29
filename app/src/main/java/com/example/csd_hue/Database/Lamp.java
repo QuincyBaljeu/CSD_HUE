@@ -1,6 +1,8 @@
 package com.example.csd_hue.Database;
 
-public class Lamp {
+import java.io.Serializable;
+
+public class Lamp implements Serializable {
 
     private String lampID;
     private String lampHue;

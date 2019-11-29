@@ -1,6 +1,8 @@
 package com.example.csd_hue;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +11,14 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.csd_hue.Database.Lamp;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -20,7 +28,8 @@ import java.util.concurrent.CompletableFuture;
 public class Lamp_list extends AppCompatActivity {
 
     private ListView lampListView;
-    private ArrayAdapter lampAdapter;
+    private LampAdapter lampAdapter;
+    private RecyclerView recyclerView;
     private List<JSONObject>lamps = new ArrayList<>();
     private String ip;
     private String port;
@@ -34,11 +43,47 @@ public class Lamp_list extends AppCompatActivity {
 
         ip = getIntent().getExtras().getString("ip");
         port = getIntent().getExtras().getString("port");
+        recyclerView = findViewById(R.id.RV_lamps);
 
-        lampListView = findViewById(R.id.lampListView);
-        //TODO instantiate lamps array
-        lampAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lamps);
-        lampListView.setAdapter(lampAdapter);
+        setup();
+        Log.d("@d", "getting list...");
+
+        /**
+        Gson gson = new Gson();
+        for (JSONObject objectLamp : lamps){
+            Lamp convertedLamp = gson.fromJson(objectLamp.toString(), Lamp.class);
+            convertedLamps.add(convertedLamp);
+            Log.d("convert", "Converting a lamp");
+        }
+
+        for (Lamp conLamp : convertedLamps){
+            Log.i("CONV", conLamp.toString());
+        }
+         */
+
+        Button sendToDatabaseButton = findViewById(R.id.btn_sendToDb);
+        Button readFromDatabaseButton = findViewById(R.id.btn_loaddb);
+
+        sendToDatabaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                for (JSONObject object : lamps){
+                    try {
+                        Log.d("@@@@", object.getJSONObject("state").getString("hue"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false));
+        Log.d("x", String.valueOf(lamps.size()));
+        lampAdapter = new LampAdapter(lamps);
+        recyclerView.setAdapter(lampAdapter);
+
+        /**
         lampListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -46,8 +91,8 @@ public class Lamp_list extends AppCompatActivity {
                 startActivity(HueInfo);
             }
         });
-        setup();
-        Log.d("@d", "getting list...");
+         */
+
     }
 
     private void setup() {

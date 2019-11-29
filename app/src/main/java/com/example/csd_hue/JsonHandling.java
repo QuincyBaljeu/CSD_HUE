@@ -72,6 +72,7 @@ public class JsonHandling {
             JsonObjectRequest rq = new JsonObjectRequest(Request.Method.GET, putUrl, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    Log.d("D@zz", putUrl);
                     JSONArray array = null;
                     try {
                         array = response.getJSONObject("lights").names();
