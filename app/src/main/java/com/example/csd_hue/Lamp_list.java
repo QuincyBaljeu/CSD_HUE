@@ -13,13 +13,11 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public class Lamp_list extends AppCompatActivity {
 
@@ -117,10 +115,10 @@ public class Lamp_list extends AppCompatActivity {
     private void setup() {
         jsonHandling = new JsonHandling(this,ip,port, new LampFound() {
             @Override
-            public void lampFound(List<JSONObject> lamp) {
-                lamps = lamp;
+            public void lampFound(JSONObject lamp) {
+                JSONObject lights = lamp;
                 lampAdapter.notifyDataSetChanged();
-                Log.d("d@",lamp.toString());
+                Log.d("d@",lights.toString());
             }
         });
         jsonHandling.setUp();

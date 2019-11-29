@@ -75,13 +75,14 @@ public class JsonHandling {
                     Log.d("D@zz", putUrl);
                     JSONArray array = null;
                     try {
-                        array = response.getJSONObject("lights").names();
-                        Log.d("@d", array.toString());
-                        for (int i = 0; i < array.length(); i++) {
-                            JSONObject lamp = response.getJSONObject("lights").getJSONObject(array.getString(i));
-                            lamps.add(lamp);
-                        }
-                        lampFound.lampFound(lamps);
+//                        array = response.getJSONObject("lights").names();
+//                        Log.d("@d", array.toString());
+//                        for (int i = 0; i < array.length(); i++) {
+//                            JSONObject lamp = response.getJSONObject("lights").getJSONObject(array.getString(i));
+//                            lamps.add(lamp);
+
+                        JSONObject lights = response.getJSONObject("lights");
+                        lampFound.lampFound(lights);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
