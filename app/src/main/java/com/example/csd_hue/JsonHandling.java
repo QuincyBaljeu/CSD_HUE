@@ -77,7 +77,7 @@ public class JsonHandling {
                         array = response.getJSONObject("lights").names();
                         Log.d("@d", array.toString());
                         for (int i = 0; i < array.length(); i++) {
-                            JSONObject lamp = array.getJSONObject(i);
+                            JSONObject lamp = response.getJSONObject("lights").getJSONObject(array.getString(i));
                             lamps.add(lamp);
                         }
                         lampFound.lampFound(lamps);
