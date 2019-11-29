@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -115,8 +117,14 @@ public class Lamp_list extends AppCompatActivity {
     private void setup() {
         jsonHandling = new JsonHandling(this,ip,port, new LampFound() {
             @Override
-            public void lampFound(JSONObject lamp) {
+            public void lampFound(JSONObject lamp) throws JSONException {
                 JSONObject lights = lamp;
+
+                for (int i = 0; i < lights.names().length(); i++) {
+                    JSONObject lampObject = lights.getJSONObject(lights.names().getString(i));
+                    Log.d("@d", "lampFound: " + lampObject.toString());
+                }
+
                 lampAdapter.notifyDataSetChanged();
                 Log.d("d@",lights.toString());
             }
