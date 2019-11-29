@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -68,6 +69,7 @@ public class Lamp_list extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Log.d("X", String.valueOf(lamps.size()));
                 for (JSONObject object : lamps){
                     try {
                         Log.d("@@@@", object.getJSONObject("state").getString("hue"));
@@ -78,11 +80,33 @@ public class Lamp_list extends AppCompatActivity {
             }
         });
 
+        readFromDatabaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent HueInfo = new Intent(Lamp_list.this, HueController.class);
+                startActivity(HueInfo);
+            }
+        });
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false));
         Log.d("x", String.valueOf(lamps.size()));
         lampAdapter = new LampAdapter(lamps);
         recyclerView.setAdapter(lampAdapter);
 
+
+
+
+        new CountDownTimer(5000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                Log.d("timer", "times ticking");
+            }
+
+            public void onFinish() {
+                Log.d("timer", "finished");
+                Log.d("please", String.valueOf(lamps.size()));
+                lampAdapter.notifyDataSetChanged();
+            }
+        }.start();
         /**
         lampListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
