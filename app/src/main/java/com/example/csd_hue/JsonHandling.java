@@ -25,6 +25,7 @@ public class JsonHandling {
     private String username;
     private LampFound lampFound;
     private boolean setUp = false;
+    List<JSONObject> lamps;
 
     public JsonHandling(Context c, String host, String port, LampFound lampFound) {
         this.URL = "http://" + host + ":" + port + "/api";
@@ -34,7 +35,7 @@ public class JsonHandling {
 
     public void setUp() {
         this.requestQueue = Volley.newRequestQueue(c);
-
+        lamps = new ArrayList<>();
         JSONObject getUserName = new JSONObject();
         try {
             getUserName.put("devicetype", c.getApplicationInfo().name + Build.MODEL);
@@ -49,9 +50,9 @@ public class JsonHandling {
                     String rs = response.getJSONObject(0)
                             .getJSONObject("success")
                             .getString("username");
-                    Log.d("@d",rs);
                     username = rs;
-                    setUp = true;
+                    getLampList();
+                    Log.d("@d","set up completed!");
                 } catch (Exception e) {
                     Log.d("@d", "dont forget to press link!",e);
                 }
@@ -66,7 +67,7 @@ public class JsonHandling {
     }
 
     public void getLampList() {
-        if (setUp) {
+
             String putUrl = URL + "/" + username;
             JsonObjectRequest rq = new JsonObjectRequest(Request.Method.GET, putUrl, null, new Response.Listener<JSONObject>() {
                 @Override
@@ -77,7 +78,9 @@ public class JsonHandling {
                         Log.d("@d", array.toString());
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject lamp = array.getJSONObject(i);
+                            lamps.add(lamp);
                         }
+                        lampFound.lampFound(lamps);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -90,7 +93,6 @@ public class JsonHandling {
                 }
             });
             requestQueue.add(rq);
-        }else Log.e("@e", "setup was not completed");
     }
 
     public void setLampColor(int id, int bri, int hueVal, int sat, boolean state) throws JSONException {

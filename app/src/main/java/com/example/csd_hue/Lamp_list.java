@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class Lamp_list extends AppCompatActivity {
 
@@ -45,20 +46,23 @@ public class Lamp_list extends AppCompatActivity {
                 startActivity(HueInfo);
             }
         });
+        setup();
+        Log.d("@d", "getting list...");
+    }
 
+    private void setup() {
         jsonHandling = new JsonHandling(this,ip,port, new LampFound() {
             @Override
-            public void lampFound(JSONObject lamp) {
-                lamps.add(lamp);
+            public void lampFound(List<JSONObject> lamp) {
+                lamps = lamp;
                 lampAdapter.notifyDataSetChanged();
                 Log.d("d@",lamp.toString());
             }
         });
-
         jsonHandling.setUp();
-        while (!jsonHandling.isSetUp()) jsonHandling.getLampList();
-
-        Log.d("@d", "getting list...");
+        for (JSONObject o: lamps) {
+            Log.d("@d",o.toString());
+        }
     }
-
 }
+
