@@ -9,15 +9,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.csd_hue.Database.Lamp;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -129,9 +124,7 @@ public class Lamp_list extends AppCompatActivity {
             }
         });
         jsonHandling.setUp();
-        for (JSONObject o: lamps) {
-            Log.d("@d",o.toString());
-        }
+
     }
 }
 
