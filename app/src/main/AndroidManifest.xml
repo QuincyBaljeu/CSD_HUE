@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Lamp_list"></activity>
+        <activity android:name=".LampActivity"></activity>
+        <activity android:name=".Lamp_list" />
         <activity android:name=".HueController" />
         <activity android:name=".MainActivity">
             <intent-filter>
