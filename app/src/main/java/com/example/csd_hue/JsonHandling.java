@@ -1,6 +1,7 @@
 package com.example.csd_hue;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
@@ -18,6 +19,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class JsonHandling {
     private RequestQueue requestQueue;
     private Context c;
@@ -27,10 +29,13 @@ public class JsonHandling {
     private boolean setUp = false;
     List<JSONObject> lamps;
 
-    public JsonHandling(Context c, String host, String port, LampFound lampFound) {
-        this.URL = "http://" + host + ":" + port + "/api";
+    private SharedPreferences pref;
+
+    public JsonHandling(Context c, String host, LampFound lampFound) {
+        this.URL = "http://" + host + ":" + 80 + "/api";
         this.c = c;
         this.lampFound = lampFound;
+        pref = c.getSharedPreferences("HUE",Context.MODE_PRIVATE);
     }
 
     public void setUp() {
@@ -47,12 +52,19 @@ public class JsonHandling {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    String rs = response.getJSONObject(0)
-                            .getJSONObject("success")
-                            .getString("username");
-                    username = rs;
+                    if (pref.getString("HUE","").equals("") || pref.getString("HUE","") == null) {
+                        String rs = response.getJSONObject(0)
+                                .getJSONObject("success")
+                                .getString("username");
+                        username = rs;
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("HUE",username);
+                        editor.commit();
+                        Log.d("@d", "set up completed!");
+                    }else {
+                    username = pref.getString("HUE","");
+                    }
                     getLampList();
-                    Log.d("@d","set up completed!");
                 } catch (Exception e) {
                     Log.d("@d", "dont forget to press link!",e);
                 }
@@ -112,9 +124,5 @@ public class JsonHandling {
             }
         }, null);
         requestQueue.add(jsonObjectRequest);
-    }
-
-    public boolean isSetUp() {
-        return setUp;
     }
 }

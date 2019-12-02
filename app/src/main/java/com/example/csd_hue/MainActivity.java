@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         et_ip = findViewById(R.id.txt_ip);
-        et_port = findViewById(R.id.txt_port);
         et_userKey = findViewById(R.id.txt_userkey);
         error = findViewById(R.id.tv_error);
 
@@ -33,13 +32,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String ip = et_ip.getText().toString();
-                String port = et_port.getText().toString();
                 String userkey;
 
                 Intent intent = new Intent(MainActivity.this, Lamp_list.class);
                 intent.putExtra("ip",ip);
-                intent.putExtra("port",port);
-                
                 startActivity(intent);
             }
         });

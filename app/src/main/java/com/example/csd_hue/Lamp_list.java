@@ -26,9 +26,8 @@ public class Lamp_list extends AppCompatActivity {
     private ListView lampListView;
     private LampAdapter lampAdapter;
     private RecyclerView recyclerView;
-    private List<JSONObject>lamps = new ArrayList<>();
+    private List<JSONObject> lamps = new ArrayList<>();
     private String ip;
-    private String port;
     private JsonHandling jsonHandling;
 
 
@@ -38,23 +37,22 @@ public class Lamp_list extends AppCompatActivity {
         setContentView(R.layout.activity_lamp_list);
 
         ip = getIntent().getExtras().getString("ip");
-        port = getIntent().getExtras().getString("port");
         recyclerView = findViewById(R.id.RV_lamps);
 
         setup();
         Log.d("@d", "getting list...");
 
         /**
-        Gson gson = new Gson();
-        for (JSONObject objectLamp : lamps){
-            Lamp convertedLamp = gson.fromJson(objectLamp.toString(), Lamp.class);
-            convertedLamps.add(convertedLamp);
-            Log.d("convert", "Converting a lamp");
-        }
+         Gson gson = new Gson();
+         for (JSONObject objectLamp : lamps){
+         Lamp convertedLamp = gson.fromJson(objectLamp.toString(), Lamp.class);
+         convertedLamps.add(convertedLamp);
+         Log.d("convert", "Converting a lamp");
+         }
 
-        for (Lamp conLamp : convertedLamps){
-            Log.i("CONV", conLamp.toString());
-        }
+         for (Lamp conLamp : convertedLamps){
+         Log.i("CONV", conLamp.toString());
+         }
          */
 
         Button sendToDatabaseButton = findViewById(R.id.btn_sendToDb);
@@ -65,7 +63,7 @@ public class Lamp_list extends AppCompatActivity {
             public void onClick(View v) {
 
                 Log.d("X", String.valueOf(lamps.size()));
-                for (JSONObject object : lamps){
+                for (JSONObject object : lamps) {
                     try {
                         Log.d("@@@@", object.getJSONObject("state").getString("hue"));
                     } catch (JSONException e) {
@@ -88,8 +86,6 @@ public class Lamp_list extends AppCompatActivity {
         recyclerView.setAdapter(lampAdapter);
 
 
-
-
         new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -103,19 +99,18 @@ public class Lamp_list extends AppCompatActivity {
             }
         }.start();
         /**
-        lampListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent HueInfo = new Intent(Lamp_list.this, HueController.class);
-                startActivity(HueInfo);
-            }
+         lampListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent HueInfo = new Intent(Lamp_list.this, HueController.class);
+        startActivity(HueInfo);
+        }
         });
          */
 
     }
 
     private void setup() {
-        jsonHandling = new JsonHandling(this,ip,port, new LampFound() {
+        jsonHandling = new JsonHandling(this, ip, new LampFound() {
             @Override
             public void lampFound(JSONObject lamp) throws JSONException {
                 JSONObject lights = lamp;
@@ -126,7 +121,7 @@ public class Lamp_list extends AppCompatActivity {
                 }
 
                 lampAdapter.notifyDataSetChanged();
-                Log.d("d@",lights.toString());
+                Log.d("d@", lights.toString());
             }
         });
         jsonHandling.setUp();

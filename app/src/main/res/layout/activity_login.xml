@@ -37,22 +37,9 @@
         android:ems="10"
         android:hint="@string/login_ip"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/txt_port"
-        app:layout_constraintStart_toStartOf="@+id/txt_port"
-        app:layout_constraintTop_toBottomOf="@+id/txt_userkey" />
-
-    <EditText
-        android:id="@+id/txt_port"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/login_port"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_ip"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_userkey" />
 
     <Button
         android:id="@+id/btn_connect"
@@ -62,8 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_port"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_ip" />
 
     <TextView
         android:id="@+id/tv_error"
