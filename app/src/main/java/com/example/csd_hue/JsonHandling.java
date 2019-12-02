@@ -3,6 +3,7 @@ package com.example.csd_hue;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -16,11 +17,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class JsonHandling {
+public class JsonHandling implements Serializable{
     private RequestQueue requestQueue;
     private Context c;
     private String URL;

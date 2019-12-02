@@ -81,7 +81,7 @@ public class Lamp_list extends AppCompatActivity {
                 startActivity(HueInfo);
             }
         });
-        lampAdapter = new LampAdapter(lamps);
+        lampAdapter = new LampAdapter(lamps, jsonHandling);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(lampAdapter);
 
