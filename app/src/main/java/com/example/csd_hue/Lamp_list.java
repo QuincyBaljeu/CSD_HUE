@@ -29,7 +29,6 @@ public class Lamp_list extends AppCompatActivity {
     private JsonHandling jsonHandling;
     private boolean bridge;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,19 +41,6 @@ public class Lamp_list extends AppCompatActivity {
 
         setup();
         Log.d("@d", "getting list...");
-
-        /**
-         Gson gson = new Gson();
-         for (JSONObject objectLamp : lamps){
-         Lamp convertedLamp = gson.fromJson(objectLamp.toString(), Lamp.class);
-         convertedLamps.add(convertedLamp);
-         Log.d("convert", "Converting a lamp");
-         }
-
-         for (Lamp conLamp : convertedLamps){
-         Log.i("CONV", conLamp.toString());
-         }
-         */
 
         Button sendToDatabaseButton = findViewById(R.id.btn_sendToDb);
         Button readFromDatabaseButton = findViewById(R.id.btn_loaddb);
@@ -84,10 +70,6 @@ public class Lamp_list extends AppCompatActivity {
         lampAdapter = new LampAdapter(lamps);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(lampAdapter);
-
-
-
-
         Log.d("x", String.valueOf(lamps.size()));
 
     }

@@ -19,14 +19,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class JsonHandling {
-    private RequestQueue requestQueue;
+ public class JsonHandling {
+    private static RequestQueue requestQueue;
     private Context c;
-    private String URL;
-    private String username;
+    private static String URL;
+    private static String username;
     private LampFound lampFound;
-    private boolean setUp = false;
     List<JSONObject> lamps;
 
     private SharedPreferences pref;
@@ -144,14 +142,13 @@ public class JsonHandling {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
                     Log.e("@E", error.toString());
                 }
             });
             requestQueue.add(rq);
     }
 
-    public void setLampColor(int id, int bri, int hueVal, int sat, boolean state) throws JSONException {
+    public static void setLampColor(int id, int bri, int hueVal, int sat, boolean state) throws JSONException {
         String putUrl = URL + "/" + username + "/lights" + id + "/state";
         JSONObject setLamp = new JSONObject();
         setLamp.put("bri", bri);

@@ -63,7 +63,6 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampViewHolder
     public void onBindViewHolder(@NonNull LampViewHolder holder, int position) {
         JSONObject lamp = lamps.get(position);
         Log.d("d@", "onbindviewholderrrrrrrrrr");
-
         try {
             float[] lampHSV = {Float.valueOf(lamp.getJSONObject("state").getString("hue")),Float.valueOf(lamp.getJSONObject("state").getString("sat")), Float.valueOf(lamp.getJSONObject("state").getString("bri")) };
             holder.lampID.setText(lamp.getString("name"));
