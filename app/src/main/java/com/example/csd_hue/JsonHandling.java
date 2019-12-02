@@ -47,35 +47,33 @@ public class JsonHandling {
         } catch (JSONException e) {
             Log.e("@E", "JsonError: ", e);
         }
-
-        CustomJsonObjectRequest request = new CustomJsonObjectRequest(Request.Method.POST, URL, getUserName, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    if (pref.getString("HUE","").equals("") || pref.getString("HUE","") == null) {
+        if (pref.getString("HUE","").equals("") || pref.getString("HUE","") == null) {
+            CustomJsonObjectRequest request = new CustomJsonObjectRequest(Request.Method.POST, URL, getUserName, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    try {
                         String rs = response.getJSONObject(0)
                                 .getJSONObject("success")
                                 .getString("username");
                         username = rs;
+
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.putString("HUE",username);
-                        editor.commit();
+                        editor.putString("HUE", username);
+                        editor.apply();
                         Log.d("@d", "set up completed!");
-                    }else {
-                    username = pref.getString("HUE","");
+                    } catch (Exception e) {
+                        Log.d("@d", "dont forget to press link!", e);
                     }
-                    getLampList();
-                } catch (Exception e) {
-                    Log.d("@d", "dont forget to press link!",e);
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("@E", error.toString());
-            }
-        });
-        requestQueue.add(request);
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("@E", error.toString());
+                }
+            });
+            requestQueue.add(request);
+        }else username = pref.getString("HUE","error");
+        getLampList();
     }
 
     public void getLampList() {

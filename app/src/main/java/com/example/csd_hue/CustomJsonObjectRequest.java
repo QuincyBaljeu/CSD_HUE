@@ -34,7 +34,6 @@ public class CustomJsonObjectRequest extends JsonRequest<JSONArray> {
         try {
             String responseInText = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-            Log.d("@d",responseInText);
             JSONArray returnArray = new JSONArray(responseInText);
             parsingResult = Response.success(returnArray, HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException | JSONException e) {
