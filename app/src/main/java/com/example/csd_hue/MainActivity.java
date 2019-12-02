@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 switch_bridge.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(isChecked)bridge = true;
-                        else bridge = false;
+                        bridge = isChecked;
                     }
                 });
 

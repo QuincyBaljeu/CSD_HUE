@@ -2,6 +2,7 @@ package com.example.csd_hue;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -21,7 +22,6 @@ import java.util.List;
 
 public class Lamp_list extends AppCompatActivity {
 
-    private ListView lampListView;
     private LampAdapter lampAdapter;
     private RecyclerView recyclerView;
     private List<JSONObject> lamps = new ArrayList<>();
@@ -81,32 +81,14 @@ public class Lamp_list extends AppCompatActivity {
                 startActivity(HueInfo);
             }
         });
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false));
-        Log.d("x", String.valueOf(lamps.size()));
         lampAdapter = new LampAdapter(lamps);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(lampAdapter);
 
 
-        new CountDownTimer(5000, 1000) {
 
-            public void onTick(long millisUntilFinished) {
-                Log.d("timer", "times ticking");
-            }
 
-            public void onFinish() {
-                Log.d("timer", "finished");
-                Log.d("please", String.valueOf(lamps.size()));
-                lampAdapter.notifyDataSetChanged();
-            }
-        }.start();
-        /**
-         lampListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent HueInfo = new Intent(Lamp_list.this, HueController.class);
-        startActivity(HueInfo);
-        }
-        });
-         */
+        Log.d("x", String.valueOf(lamps.size()));
 
     }
 
@@ -119,9 +101,9 @@ public class Lamp_list extends AppCompatActivity {
                 for (int i = 0; i < lights.names().length(); i++) {
                     JSONObject lampObject = lights.getJSONObject(lights.names().getString(i));
                     Log.d("@d", "lampFound: " + lampObject.toString());
+                    lamps.add(lampObject);
+                    lampAdapter.notifyDataSetChanged();
                 }
-
-                lampAdapter.notifyDataSetChanged();
                 Log.d("d@", lights.toString());
             }
         });

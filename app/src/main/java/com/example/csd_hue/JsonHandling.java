@@ -105,6 +105,7 @@ public class JsonHandling {
                     } catch (Exception e) {
                         Log.d("@d", "dont forget to press link!", e);
                     }
+                    getLampList();
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -113,8 +114,10 @@ public class JsonHandling {
                 }
             });
             requestQueue.add(request);
-        }else username = pref.getString("HUEEmulator","error");
-        getLampList();
+        }else{
+            username = pref.getString("HUEEmulator","error");
+            getLampList();
+        }
     }
 
     public void getLampList() {
