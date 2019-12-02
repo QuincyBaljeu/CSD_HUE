@@ -24,6 +24,8 @@ public class HueController extends AppCompatActivity {
         SeekBar bar_bri = findViewById(R.id.bar_brightness);
         SeekBar bar_sat = findViewById(R.id.bar_saturation);
 
+        int position = (int) getIntent().getSerializableExtra("POS") + 1;
+
         btn_sendToBridge.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -36,7 +38,7 @@ public class HueController extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 try {
-                    JsonHandling.setLampColor(1, (bar_bri.getProgress()*253/100)+1, bar_hue.getProgress()*65533/100+1, (bar_sat.getProgress()*253/100+1), true);
+                    JsonHandling.setLampColor(position, (bar_bri.getProgress()*253/100)+1, bar_hue.getProgress()*65533/100+1, (bar_sat.getProgress()*253/100+1), true);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

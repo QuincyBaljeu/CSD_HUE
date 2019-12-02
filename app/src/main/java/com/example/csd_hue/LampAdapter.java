@@ -49,6 +49,7 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampViewHolder
                     Intent intent = new Intent(v.getContext(), HueController.class);
                     JSONObject lamp = lamps.get(LampViewHolder.super.getAdapterPosition());
                     intent.putExtra("LAMP", lamp.toString());
+                    intent.putExtra("POS", getAdapterPosition());
                     v.getContext().startActivity(intent);
                 }
             });
