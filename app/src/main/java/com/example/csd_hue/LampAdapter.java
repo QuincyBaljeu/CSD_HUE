@@ -26,11 +26,10 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampViewHolder
 
 
     private List<JSONObject> lamps;
-    private JsonHandling jsonHandling;
 
-    public LampAdapter(List<JSONObject> lamps, JsonHandling jsonHandling){
+
+    public LampAdapter(List<JSONObject> lamps){
         this.lamps = lamps;
-        this.jsonHandling = jsonHandling;
     }
 
 
@@ -50,7 +49,6 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampViewHolder
                     Intent intent = new Intent(v.getContext(), HueController.class);
                     JSONObject lamp = lamps.get(LampViewHolder.super.getAdapterPosition());
                     intent.putExtra("LAMP", lamp.toString());
-                    intent.putExtra("JSON", jsonHandling);
                     v.getContext().startActivity(intent);
                 }
             });
