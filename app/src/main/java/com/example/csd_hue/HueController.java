@@ -12,6 +12,7 @@ import org.json.JSONException;
 
 public class HueController extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +29,14 @@ public class HueController extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("CONTROLLER", "Send to bridge");
                 //method to send to bridge
-
             }
         });
 
-        bar_hue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar.OnSeekBarChangeListener listenr = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 try {
-                    JsonHandling.setLampColor(1, (bar_bri.getProgress()/100*255), (bar_hue.getProgress()*100/65535), (bar_sat.getProgress()/100*255), true);
+                    JsonHandling.setLampColor(1, (bar_bri.getProgress()*253/100)+1, bar_hue.getProgress()*65533/100+1, (bar_sat.getProgress()*253/100+1), true);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -51,49 +51,11 @@ public class HueController extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
-        });
+        };
 
-        bar_bri.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                try {
-                    JsonHandling.setLampColor(1, (bar_bri.getProgress()/100*255), bar_hue.getProgress(), (bar_sat.getProgress()/100*255), true);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        bar_sat.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                try {
-                    JsonHandling.setLampColor(1, (bar_bri.getProgress()/100*255), bar_hue.getProgress(), (bar_sat.getProgress()/100*255), true);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        bar_bri.setOnSeekBarChangeListener(listenr);
+        bar_hue.setOnSeekBarChangeListener(listenr);
+        bar_sat.setOnSeekBarChangeListener(listenr);
 
 
 

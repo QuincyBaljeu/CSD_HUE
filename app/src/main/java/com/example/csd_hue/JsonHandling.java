@@ -151,7 +151,7 @@ import java.util.List;
     }
 
     public static void setLampColor(int id, int bri, double hueVal, int sat, boolean state) throws JSONException {
-        String putUrl = URL + "/" + username + "/lights" + id + "/state";
+        String putUrl = URL + "/" + username + "/lights/" + id + "/state";
         JSONObject setLamp = new JSONObject();
         setLamp.put("bri", bri);
         setLamp.put("hue", hueVal);
