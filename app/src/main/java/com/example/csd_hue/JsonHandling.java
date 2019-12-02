@@ -38,7 +38,8 @@ public class JsonHandling {
         pref = c.getSharedPreferences("HUE",Context.MODE_PRIVATE);
     }
 
-    public void setUp() {
+
+    public void setUpBridge() {
         this.requestQueue = Volley.newRequestQueue(c);
         lamps = new ArrayList<>();
         JSONObject getUserName = new JSONObject();
@@ -47,18 +48,19 @@ public class JsonHandling {
         } catch (JSONException e) {
             Log.e("@E", "JsonError: ", e);
         }
-        if (pref.getString("HUE","").equals("") || pref.getString("HUE","") == null) {
+        String key =(pref.getString("HUEBridge",""));
+        assert key != null;
+        if (key.equals("")) {
             CustomJsonObjectRequest request = new CustomJsonObjectRequest(Request.Method.POST, URL, getUserName, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
                     try {
-                        String rs = response.getJSONObject(0)
+                        username = response.getJSONObject(0)
                                 .getJSONObject("success")
                                 .getString("username");
-                        username = rs;
 
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.putString("HUE", username);
+                        editor.putString("HUEBridge", username);
                         editor.apply();
                         Log.d("@d", "set up completed!");
                     } catch (Exception e) {
@@ -72,7 +74,46 @@ public class JsonHandling {
                 }
             });
             requestQueue.add(request);
-        }else username = pref.getString("HUE","error");
+        }else username = pref.getString("HUEBridge","error");
+        getLampList();
+    }
+
+    public void setUpEmulator() {
+        this.requestQueue = Volley.newRequestQueue(c);
+        lamps = new ArrayList<>();
+        JSONObject getUserName = new JSONObject();
+        try {
+            getUserName.put("devicetype", c.getApplicationInfo().name + Build.MODEL);
+        } catch (JSONException e) {
+            Log.e("@E", "JsonError: ", e);
+        }
+        String key =(pref.getString("HUEEmulator",""));
+        assert key != null;
+        if (key.equals("")) {
+            CustomJsonObjectRequest request = new CustomJsonObjectRequest(Request.Method.POST, URL, getUserName, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    try {
+                       username = response.getJSONObject(0)
+                                .getJSONObject("success")
+                                .getString("username");
+
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("HUEEmulator", username);
+                        editor.apply();
+                        Log.d("@d", "set up completed!");
+                    } catch (Exception e) {
+                        Log.d("@d", "dont forget to press link!", e);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("@E", error.toString());
+                }
+            });
+            requestQueue.add(request);
+        }else username = pref.getString("HUEEmulator","error");
         getLampList();
     }
 

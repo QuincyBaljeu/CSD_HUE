@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,6 +27,7 @@ public class Lamp_list extends AppCompatActivity {
     private List<JSONObject> lamps = new ArrayList<>();
     private String ip;
     private JsonHandling jsonHandling;
+    private boolean bridge;
 
 
     @Override
@@ -37,6 +36,8 @@ public class Lamp_list extends AppCompatActivity {
         setContentView(R.layout.activity_lamp_list);
 
         ip = getIntent().getExtras().getString("ip");
+        bridge = getIntent().getExtras().getBoolean("bridge");
+
         recyclerView = findViewById(R.id.RV_lamps);
 
         setup();
@@ -124,8 +125,9 @@ public class Lamp_list extends AppCompatActivity {
                 Log.d("d@", lights.toString());
             }
         });
-        jsonHandling.setUp();
-
+        Log.d("d@", "isBridge: " + bridge);
+        if (bridge)jsonHandling.setUpBridge();
+        else jsonHandling.setUpEmulator();
     }
 }
 
