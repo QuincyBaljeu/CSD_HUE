@@ -35,7 +35,11 @@ public class HueController extends AppCompatActivity {
         bar_hue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                try {
+                    JsonHandling.setLampColor(1, (bar_bri.getProgress()/100*255), (bar_hue.getProgress()*100/65535), (bar_sat.getProgress()/100*255), true);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -52,7 +56,11 @@ public class HueController extends AppCompatActivity {
         bar_bri.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                try {
+                    JsonHandling.setLampColor(1, (bar_bri.getProgress()/100*255), bar_hue.getProgress(), (bar_sat.getProgress()/100*255), true);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -69,7 +77,11 @@ public class HueController extends AppCompatActivity {
         bar_sat.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                
+                try {
+                    JsonHandling.setLampColor(1, (bar_bri.getProgress()/100*255), bar_hue.getProgress(), (bar_sat.getProgress()/100*255), true);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

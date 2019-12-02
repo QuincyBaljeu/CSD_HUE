@@ -150,7 +150,7 @@ import java.util.List;
             requestQueue.add(rq);
     }
 
-    public static void setLampColor(int id, int bri, int hueVal, int sat, boolean state) throws JSONException {
+    public static void setLampColor(int id, int bri, double hueVal, int sat, boolean state) throws JSONException {
         String putUrl = URL + "/" + username + "/lights" + id + "/state";
         JSONObject setLamp = new JSONObject();
         setLamp.put("bri", bri);
