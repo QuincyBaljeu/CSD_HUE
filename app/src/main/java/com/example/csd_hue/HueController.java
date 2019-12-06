@@ -18,21 +18,11 @@ public class HueController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hue_controller);
 
-        Button btn_sendToBridge = findViewById(R.id.btn_sendToBridge);
-
         SeekBar bar_hue = findViewById(R.id.bar_hue);
         SeekBar bar_bri = findViewById(R.id.bar_brightness);
         SeekBar bar_sat = findViewById(R.id.bar_saturation);
 
         int position = (int) getIntent().getSerializableExtra("POS") + 1;
-
-        btn_sendToBridge.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.i("CONTROLLER", "Send to bridge");
-                //method to send to bridge
-            }
-        });
 
         SeekBar.OnSeekBarChangeListener listenr = new SeekBar.OnSeekBarChangeListener() {
             @Override

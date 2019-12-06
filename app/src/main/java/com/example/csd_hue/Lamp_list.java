@@ -42,6 +42,7 @@ public class Lamp_list extends AppCompatActivity {
         setup();
         Log.d("@d", "getting list...");
 
+        /**
         Button sendToDatabaseButton = findViewById(R.id.btn_sendToDb);
         Button readFromDatabaseButton = findViewById(R.id.btn_loaddb);
 
@@ -67,10 +68,13 @@ public class Lamp_list extends AppCompatActivity {
                 startActivity(HueInfo);
             }
         });
+         */
+
         lampAdapter = new LampAdapter(lamps);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(lampAdapter);
         Log.d("x", String.valueOf(lamps.size()));
+
 
     }
 
